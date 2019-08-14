@@ -1,0 +1,28 @@
+\documentclass{article}
+\author{Mauricio Ayala Morales}
+\date{12 de Agosto del 2019}
+
+\begin{document}
+
+Soy Mauricio Ayala Morales, tengo 20 años y estudié en la Preparatoria no.4 "Vidal Castañeda y Nájera", hice examen para entrar a la carrera ya que no me la dieron con el Pase Reglamentado de la UNAM.
+\newline
+Razones por las que elegí la carrera:
+
+\begin{enumerate}
+\item Desde secundaria tenia curiosidad por conocer el funcionamiento de las computadoras, tanto el hardware como el software.
+\item Cuando era pequeño me gustaban los videojuegos y deseaba saber cómo se hacian y quise participar en la creación de alguno.
+\item Hace dos años, mientras investigaba sobre qué carrera elegir, me encontré con el tema de la computación cuántica y me interesa aprender más y participar en su desarrollo.
+\item Me pareció que el plan de estuios de la carrera estaba más enfocado hacia la ciencia y la investigación, y esto llamó mi atención.
+\end{enumerate}
+\newline
+Materias optativas que me interesan:
+
+\begin{itemize}
+\item[-] Computación Cuántica 1 y 2
+\item[-] Lenguajes de Programación 2
+\item[-] Almacenes y Minería de Datos
+\item[-] Introducción a la Criptografía
+\item[-] Reconocimiento de Patrones y Aprendizaje Automatizado
+\end{itemize}
+
+\end{document}
