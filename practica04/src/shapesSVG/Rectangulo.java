@@ -136,7 +136,7 @@ public class Rectangulo{
 
     /**
      *Método para saber si dos rectángulos tienen mismo perímetro y área
-     *@return true si los rectángulos tienen mismo perimetro y área, false en otro case
+     *@return true si los rectángulos tienen mismo perimetro y área, false en otro caso
      */
     public boolean equals(Object q){
 	if(q instanceof Rectangulo){

@@ -29,6 +29,7 @@ public class HeyJude{
 
     public static void main(String[] args){
 	int i = 0;
+	int o = 0;
 
 	while (true){
 		i++;

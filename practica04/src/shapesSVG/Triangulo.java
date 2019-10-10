@@ -149,8 +149,8 @@ public class Triangulo{
      *@return true si tienen mismo perímetro y área, false en otro caso
      */
     public boolean equals(Object s){
-	if(s instanceof Rectangulo){
-	    Rectangulo t = (Rectangulo)s;
+	if(s instanceof Triangulo){
+	    Triangulo t = (Triangulo)s;
 	    return peri == t.getPerimetro() && area == t.getArea();
 	} else return false;
     }
