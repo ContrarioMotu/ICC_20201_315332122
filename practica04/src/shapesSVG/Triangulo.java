@@ -1,38 +1,21 @@
 package shapesSVG;
-
+import shapesSVG.Function;
 /**
  *Clase para modelar un triángulo
  *@author Ayala Morlaes Mauricio
  */
-public class Triangulo{
-    private Vector2 a;
+public class Triangulo extends Shape{
     private Vector2 b;
     private Vector2 c;
     private double peri;
     private double area;
 
     /**
-     *Método para asignar valor al vector a
-     *@param a - nuevas coordenadas del vector a
-     */
-    public void setA(Vector2 a){
-	this.a = a;
-    }
-
-    /**
-     *Método para obtener el valor del vector a
-     *@return coordenadas del vector a
-     */
-    public Vector2 getA(){
-	return this.a;
-    }
-
-    /**
      *Método para asignar valor al vector b
      *@param b - nuevas coordenadas del vector b
      */
     public void setB(Vector2 b){
-	this.b = b;
+      this.b = b;
     }
 
     /**
@@ -40,7 +23,7 @@ public class Triangulo{
      *@return coordenadas del vector b
      */
     public Vector2 getB(){
-	return this.b;
+      return this.b;
     }
 
     /**
@@ -48,7 +31,7 @@ public class Triangulo{
      *@param c - nuevas cordenadas del vector c
      */
     public void setC(Vector2 c){
-	this.c = c;
+      this.c = c;
     }
 
     /**
@@ -56,7 +39,7 @@ public class Triangulo{
      *@return coordenadas del vector c
      */
     public Vector2 getC(){
-	return this.c;
+      return this.c;
     }
 
     /**
@@ -64,10 +47,10 @@ public class Triangulo{
      *@return perímetro del triángulo
      */
     public double getPerimetro(){
-	Linea s = new Linea(a.getX(), a.getY(), b.getX(), b.getY());
-	Linea t = new Linea(b.getX(), b.getY(), c.getX(), c.getY());
-	Linea u = new Linea(c.getX(), c.getY(), a.getX(), c.getY());
-	return s.getLongitud() + t.getLongitud() + u.getLongitud();
+      Linea s = new Linea(inicio.getX(), inicio.getY(), b.getX(), b.getY());
+      Linea t = new Linea(b.getX(), b.getY(), c.getX(), c.getY());
+      Linea u = new Linea(c.getX(), c.getY(), inicio.getX(), inicio.getY());
+      return s.getLongitud() + t.getLongitud() + u.getLongitud();
     }
 
     /**
@@ -76,13 +59,13 @@ public class Triangulo{
      *@return area del triángulo
      */
     public double getArea(){
-	Linea h = new Linea(a.getX(), a.getY(), b.getX(), b.getY());
-	Linea i = new Linea(b.getX(), b.getY(), c.getX(), c.getY());
-	Linea j = new Linea(c.getX(), c.getY(), a.getX(), a.getY());
-	double k = (h.getLongitud() + i.getLongitud() + j.getLongitud())/2;
-	return Math.sqrt(k *(k - h.getLongitud()) * (k - i.getLongitud()) * (k - j.getLongitud()));
+      Linea h = new Linea(inicio.getX(), inicio.getY(), b.getX(), b.getY());
+      Linea i = new Linea(b.getX(), b.getY(), c.getX(), c.getY());
+      Linea j = new Linea(c.getX(), c.getY(), inicio.getX(), inicio.getY());
+      double k = (h.getLongitud() + i.getLongitud() + j.getLongitud())/2;
+      return Math.sqrt(k *(k - h.getLongitud()) * (k - i.getLongitud()) * (k - j.getLongitud()));
     }
-    
+
     /**
      *Constructor que crea un triángulo
      *@param a - vector del primer vértice
@@ -90,9 +73,9 @@ public class Triangulo{
      *@param c - vector del tercer vértice
      */
     public Triangulo(Vector2 a, Vector2 b, Vector2 c){
-	this.a = a;
-	this.b = b;
-	this.c = c;
+      super(a);
+      this.b = b;
+      this.c = c;
     }
 
     /**
@@ -105,9 +88,9 @@ public class Triangulo{
      *@param y3 - coordenada y del tercer vértice
      */
     public Triangulo(double x1, double y1, double x2, double y2, double x3, double y3){
-	this.a = new Vector2(x1, y1);
-	this.b = new Vector2(x2, y2);
-	this.c = new Vector2(x3, y3);
+      super(new Vector2(x1, y1));
+      this.b = new Vector2(x2, y2);
+      this.c = new Vector2(x3, y3);
     }
 
     /**
@@ -115,9 +98,9 @@ public class Triangulo{
      *con coordenadas a = (100, 100), b = (200, 50 ), c = (0, 50)
      */
     public Triangulo(){
-	this.a = new Vector2(100, 100);
-	this.b = new Vector2(200, 50);
-	this.c = new Vector2(0, 50);
+      super(new Vector2(100, 100));
+      this.b = new Vector2(200, 50);
+      this.c = new Vector2(0, 50);
     }
 
     /**
@@ -125,13 +108,13 @@ public class Triangulo{
      *@return codigo para representar en SVG
      */
     public String toSVG(){
-	double cx1 = 250 + a.getX();
-	double cy1 = 250 - a.getY();
-	double cx2 = 250 + b.getX();
-	double cy2 = 250 - b.getY();
-	double cx3 = 250 + c.getX();
-	double cy3 = 250 - c.getY();
-	return "<polygon points=\"" + cx1 + ", " + cy1 + " " + cx2 + ", " + cy2 + " " + cx3 + ", " + cy3 + "\" fill=\"green\" stroke=\"black\" stroke-width=\"2\" />";
+      double cx1 = 250 + inicio.getX();
+      double cy1 = 250 - inicio.getY();
+      double cx2 = 250 + b.getX();
+      double cy2 = 250 - b.getY();
+      double cx3 = 250 + c.getX();
+      double cy3 = 250 - c.getY();
+      return "<polygon points=\"" + cx1 + ", " + cy1 + " " + cx2 + ", " + cy2 + " " + cx3 + ", " + cy3 + "\" fill=\"green\" stroke=\"black\" stroke-width=\"2\" />";
     }
 
     /**
@@ -140,7 +123,7 @@ public class Triangulo{
      */
     @Override
     public String toString(){
-	return "Vertices en: (" + a.getX() + ", " + a.getY() + ") , (" + b.getX() + ", " + b.getY() + ") , (" + c.getX() + ", " + c.getY() + ")";
+      return "Vertices en: (" + inicio.getX() + ", " + inicio.getY() + ") , (" + b.getX() + ", " + b.getY() + ") , (" + c.getX() + ", " + c.getY() + ")";
     }
 
     /**
@@ -149,9 +132,19 @@ public class Triangulo{
      *@return true si tienen mismo perímetro y área, false en otro caso
      */
     public boolean equals(Object s){
-	if(s instanceof Triangulo){
-	    Triangulo t = (Triangulo)s;
-	    return peri == t.getPerimetro() && area == t.getArea();
-	} else return false;
+      if(s instanceof Triangulo){
+        Triangulo t = (Triangulo)s;
+        return peri == t.getPerimetro() && area == t.getArea();
+      } else return false;
     }
-}
+
+    /**
+     * Metodo que recibe una interfaz funcional y aplica esa función a los vertices del triángulo
+     * @param p Función que se le aplicará al triangulo
+     */
+    public void transform(Function p) {
+        this.inicio = p.transform(inicio);
+        this.b = p.transform(b);
+        this.c = p.transform(c);
+    }
+  }

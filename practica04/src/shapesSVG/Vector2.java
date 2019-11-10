@@ -5,10 +5,9 @@ package shapesSVG;
  *@author Ayala Morales Mauricio
  */
 public class Vector2{
-
-    private double x;
-    private double y;
-    private double magnitud;
+  private double x;
+  private double y;
+  private double magnitud;
 
     /**
      *Método para obtener coordenada x
@@ -31,7 +30,7 @@ public class Vector2{
     public void setX(double x){
 	this.x = x;
     }
-    
+
     /**
      *Método para asignar valor a la coordenada y
      *@param y - nuevo valor de la coorednada y
@@ -46,7 +45,7 @@ public class Vector2{
     public double getMagnitud(){
 	return (Math.sqrt((getX() * getX()) + (getY() * getY())));
     }
-    
+
     /**
     *Contructor que recibe una coordenada (x, y) y crea un punto
     *@param x - coordenada en el eje de las abscisas
@@ -72,7 +71,7 @@ public class Vector2{
     public double distancia(Vector2 z){
 	return (Math.sqrt((z.getX() - x)*(z.getX() - x) + (z.getY() - y)*(z.getY() - y)));
     }
-    
+
     /**
      *Método para representar un vector en SVG
      *@return String del codigo para representar en SVG
@@ -82,7 +81,7 @@ public class Vector2{
         double cy = 250 - getY();
 	return "<circle cx=\"" + cx + "\"  cy=\"" + cy + "\"  r=\"4\"  fill=\"blue\" />";
     }
-    
+
     /**
      *Método para convertir una coordenada a cadena de caracteres
      *@return String de las coordenadas del vector, (x, y)

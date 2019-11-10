@@ -4,8 +4,7 @@ package shapesSVG;
  *Clase que moldea un círculo
  *@author Ayala Morales Mauricio
  */
-public class Circulo{
-    private Vector2 c;
+public class Circulo extends Shape{
     private double r;
     private double peri;
     private double area;
@@ -15,7 +14,7 @@ public class Circulo{
      *@param c - nuevo vector del centro del círculo
      */
     public void setCentro(Vector2 c){
-	this.c = c;
+      super.setA(c);
     }
 
     /**
@@ -23,7 +22,7 @@ public class Circulo{
      *@return coordenadas del centro del círculo
      */
     public Vector2 getCentro(){
-	return this.c;
+      return super.getA();
     }
 
     /**
@@ -31,7 +30,7 @@ public class Circulo{
      *@param r - nuevo radio del círculo
      */
     public void setRadio(double r){
-	this.r = r;
+      this.r = r;
     }
 
     /**
@@ -39,7 +38,7 @@ public class Circulo{
      *@return valor del radio
      */
     public double getRadio(){
-	return this.r;
+      return this.r;
     }
 
     /**
@@ -48,7 +47,7 @@ public class Circulo{
      *@param p - perímetro deseado
      */
     public void setPerimetro(double p){
-	this.r = (p)/(2 * Math.PI);
+      this.r = (p)/(2 * Math.PI);
     }
 
     /**
@@ -56,7 +55,7 @@ public class Circulo{
      *@return valor del perímetro
      */
     public double getPerimetro(){
-	return 2 * Math.PI * getRadio();
+      return 2 * Math.PI * getRadio();
     }
 
     /**
@@ -65,7 +64,7 @@ public class Circulo{
      *@param a - área deseada
      */
     public void setArea(double a){
-	this.r = Math.sqrt(a/Math.PI);
+      this.r = Math.sqrt(a/Math.PI);
     }
 
     /**
@@ -73,7 +72,7 @@ public class Circulo{
      *@return valor del área
      */
     public double getArea(){
-	return Math.PI * getRadio() * getRadio();
+      return Math.PI * getRadio() * getRadio();
     }
 
     /**
@@ -82,8 +81,8 @@ public class Circulo{
      *@param r - radio del círculo
      */
     public Circulo(Vector2 c, double r){
-	this.c = c;
-	this.r = r;
+      super(c);
+      this.r = r;
     }
 
     /**
@@ -93,8 +92,8 @@ public class Circulo{
      *@param r - radio del círculo
      */
     public Circulo(double x, double y, double r){
-	this.c = new Vector2(x, y);
-	this.r = r;
+      super(new Vector2(x, y));
+      this.r = r;
     }
 
     /**
@@ -102,8 +101,8 @@ public class Circulo{
      *con centro en (50, 50) y radio = 200
      */
     public Circulo(){
-	this.c = new Vector2(50, 50);
-	this.r = 200;
+      super(new Vector2(50, 50));
+      this.r = 200;
     }
 
     /**
@@ -111,9 +110,9 @@ public class Circulo{
      *@return código para representar en SVG
      */
     public String toSVG(){
-	double cx = 250 + c.getX();
-	double cy = 250 - c.getY();
-	return "<circle cx=\"" + cx + "\" cy=\"" + cy + "\" r=\"" + getRadio() + "\" fill=\"orange\" stroke=\"black\" stroke-width=\"2\" />";
+      double cx = 250 + inicio.getX();
+      double cy = 250 - inicio.getY();
+      return "<circle cx=\"" + cx + "\" cy=\"" + cy + "\" r=\"" + getRadio() + "\" fill=\"orange\" stroke=\"black\" stroke-width=\"2\" />";
     }
 
     /**
@@ -122,7 +121,7 @@ public class Circulo{
      */
     @Override
     public String toString(){
-	return "Centro en: (" + c.getX() + ", " + c.getY() + ")" + "\n" + "Radio = " + getRadio();
+      return "Centro en: (" + inicio.getX() + ", " + inicio.getY() + ")" + "\n" + "Radio = " + getRadio();
     }
 
     /**
@@ -132,9 +131,9 @@ public class Circulo{
      *@return true si el radio es igual, false en otro caso
      */
     public boolean equals(Object s){
-	if(s instanceof Circulo){
-	    Circulo t = (Circulo)s;
-	    return r == t.getRadio();
-	} else return false;
+      if(s instanceof Circulo){
+        Circulo t = (Circulo)s;
+        return r == t.getRadio();
+      } else return false;
     }
-}
+  }

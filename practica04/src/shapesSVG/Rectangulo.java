@@ -4,31 +4,12 @@ package shapesSVG;
  *Clase que modela un Rectángulo
  *@author Ayala Morales Mauricio
  */
-public class Rectangulo{
+public class Rectangulo extends Shape{
 
-    private Vector2 a;
     private double ancho;
     private double alto;
     private double peri;
     private double area;
-    
-    /**
-     *Método que le asigna un valor al vector a
-     *(coordenada de la esquina superior izquierda del rectángulo)
-     *@param a - nuevo valor del vector a
-     */
-    public void setA(Vector2 a){
-	this.a = a;
-    }
-
-    /**
-     *Método para obtener el valor del vector a
-     *(coordenada de la esquina superior izquierda del rectángulo)
-     *@return coordenadas del vector a
-     */
-    public Vector2 getA(){
-	return this.a;
-    }
 
     /**
      *Método para asignar el ancho del rectángulo
@@ -87,9 +68,9 @@ public class Rectangulo{
      *@param alto - altura del rectángulo
      */
     public Rectangulo(Vector2 a, double ancho, double alto){
-	this.a = a;
-	this.ancho = ancho;
-	this.alto = alto;
+      super(a);
+      this.ancho = ancho;
+      this.alto = alto;
     }
 
     /**
@@ -100,9 +81,9 @@ public class Rectangulo{
      *@param alto - altura del rectángulo
      */
     public Rectangulo(double x, double y, double ancho, double alto){
-	this.a = new Vector2(x, y);
-	this.ancho = ancho;
-	this.alto = alto;
+      super(new Vector2(x, y));
+      this.ancho = ancho;
+      this.alto = alto;
     }
 
     /**
@@ -110,9 +91,9 @@ public class Rectangulo{
      *con coordenadas (10, 10), ancho = 100 y alto = 200
      */
     public Rectangulo(){
-	this.a = new Vector2(10, 10);
-	this.ancho = 100;
-	this.alto = 200;
+      super(new Vector2(10, 10));
+      this.ancho = 100;
+      this.alto = 200;
     }
 
     /**
@@ -120,8 +101,8 @@ public class Rectangulo{
      *@return codigo para representar en SVG
      */
     public String toSVG(){
-	double cx = 250 + a.getX();
-	double cy = 250 - a.getY();
+	double cx = 250 + inicio.getX();
+	double cy = 250 - inicio.getY();
 	return "<rect x=\"" + cx + "\" y=\"" + cy + "\" width=\"" + getAncho() + "\" height=\"" + getAlto() + "\" fill=\"red\" stroke=\"black\" stroke-width=\"2\" />";
     }
 
@@ -131,7 +112,7 @@ public class Rectangulo{
      */
     @Override
     public String toString(){
-	return "(" + a.getX() + ", " + a.getY() + ")" + "\n" + "Ancho = " + getAncho() + "\n" + "Alto = " + getAlto() + "Perímetro = " + getPerimetro() + "\n" + "Área = " + getArea();
+	return "(" + inicio.getX() + ", " + inicio.getY() + ")" + "\n" + "Ancho = " + getAncho() + "\n" + "Alto = " + getAlto() + "Perímetro = " + getPerimetro() + "\n" + "Área = " + getArea();
     }
 
     /**

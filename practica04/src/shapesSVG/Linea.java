@@ -4,33 +4,16 @@ package shapesSVG;
  *Método que moldea una línea a partir de la clase Vector2
  *@author Ayala Morales Mauricio
  */
-public class Linea{
-    private Vector2 a;
-    private Vector2 b;
-    private double lg;
-
-    /**
-     *método para asignar valor a un vector A
-     *@param a - nuevas coordenadas del vector
-     */
-    public void setA(Vector2 a){
-	this.a = a;
-    }
-
-    /**
-     *Método para obtener las coordenadas del vector A
-     *@return coordenadas del vector
-     */
-    public Vector2 getA(){
-	return this.a;
-    }
+public class Linea extends Shape{
+    private Vector2 fin;
+    private double magnitud;
 
     /**
      *Método para asignar valor a un vector B
      *@param b - nuevas coordenadas del vector
      */
     public void setB(Vector2 b){
-	this.b = b;
+      this.fin = b;
     }
 
     /**
@@ -38,7 +21,7 @@ public class Linea{
      *@return coordenadas del vector
      */
     public Vector2 getB(){
-	return this.b;
+      return this.fin;
     }
 
     /**
@@ -47,7 +30,7 @@ public class Linea{
      *@return longitud de la línea
      */
     public double getLongitud(){
-	return Math.sqrt((a.getX() - b.getX())*(a.getX() - b.getX()) + (a.getY() - b.getY()) * (a.getY() - b.getY()));
+      return Math.sqrt((inicio.getX() - fin.getX())*(inicio.getX() - fin.getX()) + (inicio.getY() - fin.getY()) * (inicio.getY() - fin.getY()));
     }
 
     /**
@@ -56,8 +39,8 @@ public class Linea{
      *@param b - coordenadas del vector final
      */
     public Linea(Vector2 a, Vector2 b){
-	this.a = a;
-	this.b = b;
+      super(a);
+      this.fin = b;
     }
 
     /**
@@ -68,16 +51,32 @@ public class Linea{
      *@param y2 - coordenada y del segundo vector
      */
     public Linea(double x1, double y1, double x2, double y2){
-	this.a = new Vector2 (x1, y1);
-	this.b = new Vector2 (x2, y2);
+      super(new Vector2 (x1, y1));
+      this.fin = new Vector2 (x2, y2);
     }
 
     /**
      *Constructor para crear una línea del punto (0, 0) al punto (10, 10)
      */
     public Linea(){
-	this.a = new Vector2 (0, 0);
-	this.b = new Vector2 (10, 10);
+      super(new Vector2 (0, 0));
+      this.fin = new Vector2 (10, 10);
+    }
+
+    /**
+    *Método para calcular el área de una línea
+    *@return 0 ya que las líneas no tienen Área jejeje
+    */
+    public double getArea(){
+      return 0;
+    }
+
+    /**
+    *Método para obtener el perímetro de la línea
+    *@return El perímetro de la línea, que es lo mismo que su longitud
+    */
+    public double getPerimetro(){
+      return getLongitud();
     }
 
     /**
@@ -85,11 +84,11 @@ public class Linea{
      *@return String del codigo para representar en SVG
      */
     public String toSVG(){
-        double cx1 = 250 + a.getX();
-        double cy1 = 250 - a.getY();
-        double cx2 = 250 + b.getX();
-        double cy2 = 250 - b.getY();
-	return "<line x1=\"" + cx1 + "\" y1=\"" + cy1 + "\" x2=\"" + cx2 + "\" y2=\"" + cy2 + "\" stroke=\"blue\" stroke-width=\"4\" />";
+        double cx1 = 250 + inicio.getX();
+        double cy1 = 250 - inicio.getY();
+        double cx2 = 250 + fin.getX();
+        double cy2 = 250 - fin.getY();
+        return "<line x1=\"" + cx1 + "\" y1=\"" + cy1 + "\" x2=\"" + cx2 + "\" y2=\"" + cy2 + "\" stroke=\"blue\" stroke-width=\"4\" />";
     }
 
     /**
@@ -98,7 +97,7 @@ public class Linea{
      */
     @Override
     public String toString(){
-	return "(" + a.getX() + ", " + a.getY() + ") , (" + b.getX() + ", " + b.getY() + ")";
+      return "(" + inicio.getX() + ", " + inicio.getY() + ") , (" + fin.getX() + ", " + fin.getY() + ")";
     }
     /**
      *Método para saber si dos líneas son iguales
@@ -106,10 +105,9 @@ public class Linea{
      *@return true si las líneas son iguales, false en otro caso
      */
     public boolean equals(Object s){
-	if (s instanceof Linea){
-	    Linea l = (Linea)s;
-	    return a == l.getA() && b == l.getB();
-	} else return false;
+      if (s instanceof Linea){
+        Linea l = (Linea)s;
+        return inicio == l.getA() && fin == l.getB();
+      } else return false;
     }
-}
-	
+  }
