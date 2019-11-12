@@ -1,4 +1,11 @@
-public class Matrix{
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+/**
+*Clase que modela una matriz
+*@author Ayala Morales Mauricio
+*/
+public class Matrix implements Iterable <Double>{
 
     private int a;
     private int b;
@@ -9,22 +16,19 @@ public class Matrix{
     }
 
     public int getB(){
-	return this.b;
+      return this.b;
     }
 
-    //Construye una matriz vacia de n por m
     public Matrix(int n, int m){
 	this.a = n;
 	this.b = m;
 	this.x = new double[a][b];
     }
-    
-    //Construye una matriz dado un arreglo
+
     public Matrix(double[][] array){
 	this.x = array;
     }
-    
-    //Función que calcula producto escalar
+
     public void scalarProduct(double scalar){
         for (int a = 0;a < getA(); a++){
 		for (int b = 0; b < getB(); b++){
@@ -32,8 +36,7 @@ public class Matrix{
 			}
         }
     }
-    
-    //Función que calcula suma de matrices
+
     public void add(Matrix m){
 	for(int i = 0; i < getA(); i++){
 	    for(int j = 0; j < getB(); j++){
@@ -41,8 +44,7 @@ public class Matrix{
 	    }
 	}
     }
-    
-    //Función que calcula producto de matrices
+
     public void matrixProduct(Matrix m){
         int tc = m.getB(), tf = getB();
 	double mat[][] = new double[tf][tc];
@@ -54,21 +56,18 @@ public class Matrix{
 		}
 	} this.x = mat;
     }
-    
-    //Función que obtiene el elemento i j
+
     public double getElement(int i, int j){
 	return this.x[i][j];
     }
-    
-    //function set element
+
     public void setElement(int i, int j,double e){
 	x[i][j] = e;
     }
-    
-    //Función que calcula el determinante si es nxn
+
     public double determinant(){
         if(getA() != getB()){
-            return 0;   
+            return 0;
         }
         double res = 0;
         if (getA() == 1){
@@ -80,8 +79,7 @@ public class Matrix{
             return res;
         } return res;
     }
-    
-    //Función que te dice si 2 matrices son iguales
+
     @Override
     public boolean equals(Object o){
         if(o instanceof Matrix){
@@ -93,10 +91,57 @@ public class Matrix{
 						if(mat.getElement(a, b)!= this.x[a][b]){
 							return false;
 						}
-					}	
+					}
 				} return true;
 			}
 		}
 	} return false;
 }
+
+    @Override
+    public Iterator <Double> iterator() {
+
+        return new MatrixIterator();
+    }
+
+    private class MatrixIterator implements Iterator <Double>{
+
+    private int column=1;
+    private int rank= 0;
+
+    private boolean hasNextColumn(){
+
+        return (column < x[0].length-1)?true:false;
+        }
+
+    private boolean hasNextRank(){
+
+        return (rank < x.length-1)?true:false;
+      }
+
+    public boolean hasNext(){
+
+        if (this.hasNextColumn()){
+            return true;
+        }else return (this.hasNextRank())?true:false;
+    }
+
+     @Override
+     public Double next(){
+
+        if (hasNext()){
+            if(hasNextColumn()){
+                column++;
+            }
+            else{
+                column=0;
+                if(hasNextRank()){
+                    rank++;
+                }
+            }
+            return Matrix.this.x[this.rank][this.column];
+        }
+        return null;
+      }
+    }
 }
